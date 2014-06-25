@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using MAPIWrapper;
 
-namespace MAPIClient 
+namespace MAPIClient
 {
     public partial class FrmMain : Form
     {
@@ -19,7 +19,6 @@ namespace MAPIClient
                 var mm =
                 new MailMessage().AddToAddress(txtTo.Text)
                                              .AddCCAddress(txtCC.Text)
-                                             .AddBCCAddress("Someone")
                                              .Subject(txtSubject.Text)
                                              .Body(txtBody.Text);
 

@@ -8,8 +8,9 @@ namespace MAPIWrapper
 {
     class MAPI : IDisposable
     {
-        [DllImport("MAPI32.DLL")]
-        static extern int MAPISendMail(IntPtr sess, IntPtr hwnd, MapiMessage message, int flg, int rsv);
+        [DllImport("MAPI32.DLL", CharSet = CharSet.Ansi)]
+        //public static extern int MAPISendMail(IntPtr sess, IntPtr hwnd, MapiMessage message, int flg, int rsv);
+        public static extern uint MAPISendMail(IntPtr lhSession, IntPtr ulUIParam, ref MapiMessage lpMessage, uint flFlags, uint ulReserved);
 
         private MapiMessage _message;
         
@@ -24,7 +25,7 @@ namespace MAPIWrapper
             _message.recips = GetRecipients(mailMessage, out _message.recipCount);
             _message.files = GetAttachments(mailMessage, out _message.fileCount);
 
-            var errorId = MAPISendMail(new IntPtr(0), new IntPtr(0), _message, how, 0);
+            var errorId = MAPISendMail(new IntPtr(0), new IntPtr(0), ref _message, how, 0);
             if (errorId > 1)
                 throw new MAPIException(errorId);
 

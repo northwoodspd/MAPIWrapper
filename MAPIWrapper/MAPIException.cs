@@ -5,10 +5,10 @@ namespace MAPIWrapper
 {
     public class MAPIException : Exception
     {
-        public MAPIException(int errorCode) : base(GetDescription(errorCode)) {}
+        public MAPIException(uint errorCode) : base(GetDescription(errorCode)) {}
         public MAPIException(string message) : base(message) {}
 
-        private static string GetDescription(int id)
+        private static string GetDescription(uint id)
         {
             var errors = new Dictionary<int, string>
                 {
@@ -41,7 +41,7 @@ namespace MAPIWrapper
                     {26, "Not supported [26]"}
                 };
 
-            return "MAPI failed! " + (id <= 26 ? errors[id] : string.Format("MAPI error [{0}]", id));
+            return "MAPI failed! " + (id <= 26 ? errors[(int)id] : string.Format("MAPI error [{0}]", id));
         }
     }
 }
