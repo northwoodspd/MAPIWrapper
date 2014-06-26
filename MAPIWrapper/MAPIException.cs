@@ -14,8 +14,8 @@ namespace MAPIWrapper
                 {
                     {0, "OK [0]"},
                     {1, "User abort [1]"},
-                    {2, "General MAPI failure [2]"},
-                    {3, "MAPI login failure [3]"},
+                    {2, "General email failure [2]"},
+                    {3, "Email login failure [3]"},
                     {4, "Disk full [4]"},
                     {5, "Insufficient memory [5]"},
                     {6, "Access denied [6]"},
@@ -41,7 +41,7 @@ namespace MAPIWrapper
                     {26, "Not supported [26]"}
                 };
 
-            return "MAPI failed! " + (id <= 26 ? errors[(int)id] : string.Format("MAPI error [{0}]", id));
+            return "Email failed! " + (id <= 26 ? errors[(int)id] : string.Format("MAPI error [{0}]", id));
         }
     }
 }
