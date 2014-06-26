@@ -41,7 +41,7 @@ namespace MAPIWrapper
                     {26, "Not supported [26]"}
                 };
 
-            return "Email failed! " + (id <= 26 ? errors[(int)id] : string.Format("MAPI error [{0}]", id));
+            return (id <= 26 ? errors[(int)id] : string.Format("MAPI error [{0}]", id));
         }
     }
 }
