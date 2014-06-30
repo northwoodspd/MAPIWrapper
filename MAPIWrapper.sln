@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPIWrapper", "MAPIWrapper\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPIClient", "MAPIClient\MAPIClient.csproj", "{BFF71526-82D8-4349-ADF3-6A36B3E58F96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPITests", "MAPITests\MAPITests.csproj", "{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{BFF71526-82D8-4349-ADF3-6A36B3E58F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFF71526-82D8-4349-ADF3-6A36B3E58F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFF71526-82D8-4349-ADF3-6A36B3E58F96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

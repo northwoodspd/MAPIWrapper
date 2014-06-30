@@ -8,7 +8,7 @@ namespace MAPIWrapper
         public MAPIException(uint errorCode) : base(GetDescription(errorCode)) {}
         public MAPIException(string message) : base(message) {}
 
-        private static string GetDescription(uint id)
+        public static string GetDescription(uint id)
         {
             var errors = new Dictionary<int, string>
                 {

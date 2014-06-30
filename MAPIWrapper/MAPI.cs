@@ -9,7 +9,6 @@ namespace MAPIWrapper
     class MAPI : IDisposable
     {
         [DllImport("MAPI32.DLL", CharSet = CharSet.Ansi)]
-        //public static extern int MAPISendMail(IntPtr sess, IntPtr hwnd, MapiMessage message, int flg, int rsv);
         public static extern uint MAPISendMail(IntPtr lhSession, IntPtr ulUIParam, ref MapiMessage lpMessage, uint flFlags, uint ulReserved);
 
         private MapiMessage _message;
