@@ -5,6 +5,7 @@ namespace MAPIWrapper
 {
     public class MailMessage
     {
+        private readonly MAPI _mapi;
         private string _subject;
         private string _body;
         public List<String> ToAddresses { get; set; }
@@ -20,36 +21,51 @@ namespace MAPIWrapper
             return _body;
         }
 
+        public MailMessage(MAPI mapi) : this()
+        {
+            _mapi = mapi;
+        }
+
         public MailMessage()
         {
+            _mapi = new MAPI();
             ToAddresses = new List<string>();
             CCAddresses = new List<string>();
             BCCAddresses = new List<string>();
-            AttachmentFilePaths = new List<string>();
+            AttachmentFilePaths = new List<string>();        
         }
 
-        public MailMessage AddToAddress(string toAddress)
+        public virtual MailMessage AddAddress(string address, AddressType addressType)
         {
-            if (!string.IsNullOrEmpty(toAddress))
-                ToAddresses.Add(toAddress);
-
+            if (!string.IsNullOrEmpty(address))
+            {
+                switch (addressType)
+                {
+                    case AddressType.CC:
+                        CCAddresses.Add(address);
+                        break;
+                    case AddressType.BCC:
+                        BCCAddresses.Add(address);
+                        break;
+                    default:
+                        ToAddresses.Add(address);
+                        break;
+                }
+            }
             return this;
         }
 
-        public MailMessage AddCCAddress(string ccAddress)
+        public MailMessage AddToAddress(string address)
         {
-            if (!string.IsNullOrEmpty(ccAddress))
-                CCAddresses.Add(ccAddress);
-            
-            return this;
+            return AddAddress(address, AddressType.To);
         }
-
-        public MailMessage AddBCCAddress(string bccAddress)
+        public MailMessage AddCCAddress(string address)
         {
-            if (!string.IsNullOrEmpty(bccAddress))
-                BCCAddresses.Add(bccAddress);
-
-            return this;
+            return AddAddress(address, AddressType.CC);
+        }
+        public MailMessage AddBCCAddress(string address)
+        {
+            return AddAddress(address, AddressType.BCC);
         }
 
         public MailMessage AddAttachment(string filePath)
@@ -61,8 +77,8 @@ namespace MAPIWrapper
         }
 
         public MailMessage Subject(string subject)
-         {
-             _subject = subject;
+        {
+            _subject = subject;
             return this;
         }
 
@@ -74,7 +90,7 @@ namespace MAPIWrapper
 
         public MailMessage Send()
         {
-            new MAPI().SendMail(this); 
+           _mapi.SendMail(this);
             return this;
         }
     }

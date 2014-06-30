@@ -1,4 +1,5 @@
-﻿using MAPIWrapper;
+﻿using MAPITests.Stubs;
+using MAPIWrapper;
 using NUnit.Framework;
 using Should.Fluent;
 
@@ -8,11 +9,13 @@ namespace MAPITests
     public class MailMessageTests
     {
         private MailMessage _mailMessage;
-
+        private MAPIStub _mapiStub;
+ 
         [SetUp]
         public void Before()
         {
-            _mailMessage = new MailMessage();
+            _mapiStub = new MAPIStub();
+            _mailMessage = new MailMessage(_mapiStub);
         }
 
         [Test]
@@ -30,17 +33,19 @@ namespace MAPITests
         }
 
         [Test]
+        public void BlankAddressesShouldNotBeSaved()
+        {
+            _mailMessage.AddAddress("", AddressType.To);
+            _mailMessage.ToAddresses.Should().Not.Be.Null();
+            _mailMessage.ToAddresses.Count.Should().Equal(0);
+        }
+
+        [Test]
         public void AddingToAddressWorks()
         {
             _mailMessage.AddToAddress("TestAddress");
             _mailMessage.ToAddresses.Count.Should().Equal(1);
             _mailMessage.ToAddresses[0].Should().Equal("TestAddress");
-        }
-        [Test]
-        public void AddingBlankToAddressDoesntAddAnAddress()
-        {
-            _mailMessage.AddToAddress("");
-            _mailMessage.ToAddresses.Count.Should().Equal(0);
         }
         [Test]
         public void AddingMultipleToAddressAddsAllAddresses()
@@ -50,19 +55,12 @@ namespace MAPITests
             _mailMessage.ToAddresses.Count.Should().Equal(2);
         }
 
-
         [Test]
         public void AddingCCAddressWorks()
         {
             _mailMessage.AddCCAddress("TestAddress");
             _mailMessage.CCAddresses.Count.Should().Equal(1);
             _mailMessage.CCAddresses[0].Should().Equal("TestAddress");
-        }
-        [Test]
-        public void AddingBlankCCAddressDoesntAddAnAddress()
-        {
-            _mailMessage.AddCCAddress("");
-            _mailMessage.CCAddresses.Count.Should().Equal(0);
         }
 
         [Test]
@@ -71,12 +69,6 @@ namespace MAPITests
             _mailMessage.AddBCCAddress("TestAddress");
             _mailMessage.BCCAddresses.Count.Should().Equal(1);
             _mailMessage.BCCAddresses[0].Should().Equal("TestAddress");
-        }
-        [Test]
-        public void AddingBlankBCCAddressDoesntAddAnAddress()
-        {
-            _mailMessage.AddBCCAddress("");
-            _mailMessage.BCCAddresses.Count.Should().Equal(0);
         }
 
         [Test]
@@ -123,6 +115,14 @@ namespace MAPITests
             _mailMessage.Body("DifferentBody");
 
             _mailMessage.Body().Should().Equal("DifferentBody");
+        }
+
+        [Test]
+        public void MailMessageSendCallsMAPISend()
+        {
+            _mailMessage.Send();
+            _mapiStub.SendMailWasCalled.Should().Be.True();
+
         }
     }
 }

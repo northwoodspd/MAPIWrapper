@@ -48,6 +48,7 @@
     <Compile Include="MailMessageTests.cs" />
     <Compile Include="MAPIExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs\MAPIStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

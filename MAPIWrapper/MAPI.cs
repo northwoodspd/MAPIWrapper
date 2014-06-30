@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 namespace MAPIWrapper
 {
-    class MAPI : IDisposable
+    public class MAPI : IDisposable
     {
         [DllImport("MAPI32.DLL", CharSet = CharSet.Ansi)]
         public static extern uint MAPISendMail(IntPtr lhSession, IntPtr ulUIParam, ref MapiMessage lpMessage, uint flFlags, uint ulReserved);
 
         private MapiMessage _message;
         
-        public MAPI SendMail(MailMessage mailMessage)
+        public virtual MAPI SendMail(MailMessage mailMessage)
         {
             const int mapiLogonUi = 0x00000001;
             const int mapiDialog = 0x00000008;
@@ -36,9 +36,9 @@ namespace MAPIWrapper
             recipCount = 0;
 
             var recipients = new List<MapiRecipDesc>();
-            recipients.AddRange(mailMessage.ToAddresses.Select(toAddress => new MapiRecipDesc { recipClass = (int)RecipientType.To, name = toAddress }));
-            recipients.AddRange(mailMessage.CCAddresses.Select(ccAddress => new MapiRecipDesc { recipClass = (int)RecipientType.CC, name = ccAddress }));
-            recipients.AddRange(mailMessage.BCCAddresses.Select(bccAddress => new MapiRecipDesc { recipClass = (int)RecipientType.BCC, name = bccAddress }));
+            recipients.AddRange(mailMessage.ToAddresses.Select(toAddress => new MapiRecipDesc { recipClass = (int)AddressType.To, name = toAddress }));
+            recipients.AddRange(mailMessage.CCAddresses.Select(ccAddress => new MapiRecipDesc { recipClass = (int)AddressType.CC, name = ccAddress }));
+            recipients.AddRange(mailMessage.BCCAddresses.Select(bccAddress => new MapiRecipDesc { recipClass = (int)AddressType.BCC, name = bccAddress }));
 
             if (recipients.Count == 0)
                 return IntPtr.Zero;
