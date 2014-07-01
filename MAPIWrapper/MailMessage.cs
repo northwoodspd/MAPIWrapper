@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MAPIWrapper
 {
-    public class MailMessage
+    public class MailMessage : IDisposable
     {
         private readonly MAPI _mapi;
         private string _subject;
@@ -92,6 +92,11 @@ namespace MAPIWrapper
         {
            _mapi.SendMail(this);
             return this;
+        }
+
+        public void Dispose()
+        {
+           _mapi.Dispose();
         }
     }
 }
