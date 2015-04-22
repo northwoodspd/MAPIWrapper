@@ -12,7 +12,7 @@ namespace MAPIWrapper
         public static extern uint MAPISendMail(IntPtr lhSession, IntPtr ulUIParam, ref MapiMessage lpMessage, uint flFlags, uint ulReserved);
 
         private MapiMessage _message;
-        
+
         public virtual MAPI SendMail(MailMessage mailMessage)
         {
             const int mapiLogonUi = 0x00000001;
@@ -46,10 +46,10 @@ namespace MAPIWrapper
             var size = Marshal.SizeOf(typeof(MapiRecipDesc));
             var intPtr = Marshal.AllocHGlobal(recipients.Count * size);
 
-            var ptr = (int)intPtr;
+            var ptr = intPtr;
             foreach (var mapiDesc in recipients)
             {
-                Marshal.StructureToPtr(mapiDesc, (IntPtr)ptr, false);
+                Marshal.StructureToPtr(mapiDesc, ptr, false);
                 ptr += size;
             }
 
@@ -67,13 +67,13 @@ namespace MAPIWrapper
             var intPtr = Marshal.AllocHGlobal(mailMessage.AttachmentFilePaths.Count * size);
 
             var mapiFileDesc = new MapiFileDesc { position = -1 };
-            var ptr = (int)intPtr;
+            var ptr = intPtr;
 
             foreach (string strAttachment in mailMessage.AttachmentFilePaths)
             {
                 mapiFileDesc.name = Path.GetFileName(strAttachment);
                 mapiFileDesc.path = strAttachment;
-                Marshal.StructureToPtr(mapiFileDesc, (IntPtr)ptr, false);
+                Marshal.StructureToPtr(mapiFileDesc, ptr, false);
                 ptr += size;
             }
 
@@ -84,14 +84,13 @@ namespace MAPIWrapper
         public void Dispose()
         {
             var size = Marshal.SizeOf(typeof(MapiRecipDesc));
-            int ptr;
 
             if (_message.recips != IntPtr.Zero)
             {
-                ptr = (int)_message.recips;
+                var ptr = _message.recips;
                 for (var i = 0; i < _message.recipCount; i++)
                 {
-                    Marshal.DestroyStructure((IntPtr)ptr, typeof(MapiRecipDesc));
+                    Marshal.DestroyStructure(ptr, typeof(MapiRecipDesc));
                     ptr += size;
                 }
                 Marshal.FreeHGlobal(_message.recips);
@@ -101,10 +100,10 @@ namespace MAPIWrapper
             {
                 size = Marshal.SizeOf(typeof(MapiFileDesc));
 
-                ptr = (int)_message.files;
+                var ptr = _message.files;
                 for (var i = 0; i < _message.fileCount; i++)
                 {
-                    Marshal.DestroyStructure((IntPtr)ptr, typeof(MapiFileDesc));
+                    Marshal.DestroyStructure(ptr, typeof(MapiFileDesc));
                     ptr += size;
                 }
                 Marshal.FreeHGlobal(_message.files);
