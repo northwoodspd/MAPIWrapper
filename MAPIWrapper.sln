@@ -9,6 +9,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPIClient", "MAPIClient\MA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPIWrapper.Tests", "MAPIWrapper.Tests\MAPIWrapper.Tests.csproj", "{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{AB132A94-9431-44D1-B319-7ADCFBFFE0C4}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		build.cake = build.cake
+		build.ps1 = build.ps1
+		LICENSE = LICENSE
+		.nuget\NuGet.config = .nuget\NuGet.config
+		README.md = README.md
+		SolutionAssemblyInfo.cs = SolutionAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
