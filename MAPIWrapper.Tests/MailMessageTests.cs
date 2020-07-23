@@ -1,9 +1,8 @@
-﻿using MAPITests.Stubs;
-using MAPIWrapper;
+﻿using MAPIWrapper.Tests.Stubs;
 using NUnit.Framework;
 using Should.Fluent;
 
-namespace MAPITests
+namespace MAPIWrapper.Tests
 {
     [TestFixture]
     public class MailMessageTests

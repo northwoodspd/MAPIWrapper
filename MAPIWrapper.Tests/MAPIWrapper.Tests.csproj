@@ -8,8 +8,8 @@
     <ProjectGuid>{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MAPITests</RootNamespace>
-    <AssemblyName>MAPITests</AssemblyName>
+    <RootNamespace>MAPIWrapper.Tests</RootNamespace>
+    <AssemblyName>MAPIWrapper.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
