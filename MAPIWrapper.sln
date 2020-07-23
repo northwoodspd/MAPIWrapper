@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPIWrapper", "MAPIWrapper\MAPIWrapper.csproj", "{D2946D97-194C-4E91-8D6D-4B1A5089B679}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPIClient", "MAPIClient\MAPIClient.csproj", "{BFF71526-82D8-4349-ADF3-6A36B3E58F96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPITests", "MAPITests\MAPITests.csproj", "{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAPIWrapper.Tests", "MAPIWrapper.Tests\MAPIWrapper.Tests.csproj", "{9B00463F-60BF-419E-8EA0-4DAE7D0D9F09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25115412-5A10-47C9-8482-B7E1911B524D}
 	EndGlobalSection
 EndGlobal
