@@ -127,7 +127,7 @@ Action setAssemblyVersion = () =>
     var v = assemblyVersion();
     var a = new Version(v);
 
-    var version = new Version(a.Major, a.Minor, a.Build, Int32.Parse(buildNumber)).ToString();
+    var version = new Version(a.Major, a.Minor, Int32.Parse(buildNumber), 0).ToString();
 
     Information($"Using AssemblyVersion({version})");
 
