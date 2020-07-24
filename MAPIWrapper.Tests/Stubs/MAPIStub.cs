@@ -1,4 +1,4 @@
-﻿namespace MAPITests.Stubs
+﻿namespace MAPIWrapper.Tests.Stubs
 {
     public class MAPIStub:MAPIWrapper.MAPI
     {

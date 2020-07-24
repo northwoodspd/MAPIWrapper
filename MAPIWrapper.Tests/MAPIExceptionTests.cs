@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Should.Fluent;
 
-namespace MAPITests
+namespace MAPIWrapper.Tests
 {
     [TestFixture]
    public class MAPIExceptionTests
