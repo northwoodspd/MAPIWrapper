@@ -321,7 +321,7 @@ Action nugetPack = () =>
             ProjectUrl               = new Uri($"https://github.com/northwoodspd/{solutionName()}"),
             Copyright                = "Northwoods Consulting Partners 2020",
             RequireLicenseAcceptance = false,
-            Symbols                  = true,
+            Symbols                  = false,
             NoPackageAnalysis        = true,
             Files                    = new [] { new NuSpecContent{Source = dill.FullPath, Target = target} },
             OutputDirectory          = "./nuget",
